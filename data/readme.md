@@ -1,1 +1,4 @@
-데이터 셋입니다!
+데이터 셋 주소
+
+
+https://spamassassin.apache.org/old/publiccorpus/
