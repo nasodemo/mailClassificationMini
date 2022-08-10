@@ -16,7 +16,7 @@
 p155 문제 4번 내용
 
  4.  스팸 분류기를 만들어보세요 (아주 도전적인 과제입니다 ).
- ●  아파치 스팸어새신Apache SpamAssassin 공공 데이터셋 (https://homl.info/spamassassin)에서 스팸spam과 햄ham(스팸이 아닌 메일 ) 샘플을 내려받습니다.
+ ●  아파치 스팸어새신Apache SpamAssassin 공공 데이터셋 ( https://homl.info/spamassassin )에서 스팸spam과 햄ham(스팸이 아닌 메일 ) 샘플을 내려받습니다.
  
  ●  데이터셋의 압축을 풀고 데이터 형식을 살펴봅니다.
  
