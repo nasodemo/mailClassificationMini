@@ -1,28 +1,49 @@
+import email
+import email.policy
 import os
-import tarfile
-import urllib.request
-#import pandas as pd
 
-DOWNLOAD_ROOT = 'https://spamassassin.apache.org/old/publiccorpus/'
-SPAM_PATH = os.path.join('datasets', 'spam')
-mail_loots = []
-mail_loots.append("20030228_easy_ham.tar.bz2")
-mail_loots.append("20030228_easy_ham_2.tar.bz2")
-mail_loots.append("20030228_hard_ham.tar.bz2")
-mail_loots.append("20030228_spam.tar.bz2")
-#해야하는 일 정리
-#압축파일 열고 => 폴더 내부의 모든 파일을 load하고, 한 변수에 저장하기
+import os
 
-def fetch_mail_data(filename, spam_path=SPAM_PATH, download_root = DOWNLOAD_ROOT):
-    mail_url = DOWNLOAD_ROOT + filename
-    if not os.path.isdir(spam_path): # os.path.isdir 는 (path) 가 존재하면 True 값 반환함
-        os.makedirs(spam_path) # spam datasets 폴더 생성
-    bz2_path = os.path.join(spam_path, filename)
-    if not os.path.isfile(bz2_path):
-        urllib.request.urlretrieve(mail_url, bz2_path) # urlretrieve(url주소, 파일 이름)
-    mail_bz2 = tarfile.open(bz2_path)
-    mail_bz2.extractall()
-    mail_bz2.close()
+root = r'C:\Users\pc\Desktop\code\datasets\mail' #폴더 위치
+email = []
+spam_email = ['easy_ham', 'easy_ham_2', 'hard_ham']
+i = 0
+count = 0
+folder_dirs = []
+for folder in folder_dirs:
+    file_list = os.listdir(root + '/' + folder)
+    email.append([])
+    for file in file_list:
+        with open(root + '/' + folder + '/' + file) as f:
+            try:
+                email[i].append(f.read()) #이메일 저장
+                if count == 0:
+                    print(email[i])
+                    count += 1
+            except:
+                pass
+    i += 1
+i = 0
 
-for i in mail_loots:
-    fetch_mail_data(i)
+folder_dirs = ['spam']
+for folder in folder_dirs:
+    file_list = os.listdir(root + '/' + folder)
+    spam_email.append([])
+    for file in file_list:
+        with open(root + '/' + folder + '/' + file) as f:
+            try:
+                spam_email[i].append(f.read()) #이메일 저장
+                if count == 0:
+                    print(spam_email[i])
+                    count += 1
+            except:
+                pass
+    i += 1
+
+import numpy as np
+from sklearn.model_selection import train_test_split
+
+X = np.array(email + spam_email, dtype=object)
+y = np.array([0] * len(email) + [1] * len(email))
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
