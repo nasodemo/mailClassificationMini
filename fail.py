@@ -6,10 +6,10 @@ import os
 
 root = r'C:\Users\pc\Desktop\code\datasets\mail' #폴더 위치
 email = []
-spam_email = ['easy_ham', 'easy_ham_2', 'hard_ham']
+spam_email = []
 i = 0
 count = 0
-folder_dirs = []
+folder_dirs = ['easy_ham', 'easy_ham_2', 'hard_ham']
 for folder in folder_dirs:
     file_list = os.listdir(root + '/' + folder)
     email.append([])
